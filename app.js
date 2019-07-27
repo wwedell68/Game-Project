@@ -1,4 +1,51 @@
 'use strict';
+// template for name
+var playerName = prompt('What is your name?');
+// creating new player
+var newPlayer = new Player(playerName);
+// getting info from local storage
+var players = localStorage.getItem('players');
+
+// constructor function
+function Player(name){
+  this.name = name;
+  this.date = new Date();
+}
+
+// creating the players array and puts it into local storage
+function getPlayers() {
+  // adding new player if there isn't anything in local storage
+  if (players === null) {
+    players = [];
+    players.push(newPlayer);
+    // adding new player if there is local storage
+  } else {
+    players = JSON.parse(players);
+    players.unshift(newPlayer);
+
+    // if list is greater than 5 remove last name in the list
+    if (players.length > 5) {
+      players.pop();
+    }
+  }
+  // putting into local storage
+  var playersString = JSON.stringify(players);
+  localStorage.setItem('players', playersString);
+}
+
+getPlayers();
+// creating the list of players and time when they have played
+function createList() {
+  var ul = document.getElementById('playersList');
+  // loops through array and creates list items and appends to the dom
+  for (var i = 0; i < players.length; i++) {
+    var li = document.createElement('li');
+    li.innerHTML = players[i].name + ' played on ' + players[i].date;
+    ul.appendChild(li);
+  }
+
+}
+createList();
 
 (function () {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;

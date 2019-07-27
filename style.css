@@ -11,9 +11,6 @@ h1{
   margin-bottom: 15px;
   font-family: sans-serif;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
-  @media{
-    
-  }
 }
 
 p{
@@ -29,5 +26,6 @@ div{
 
 #canvas{
     margin-left:2%;
-    background: linear-gradient(#80BCA3, #B6D8C0); 
+    background: linear-gradient(#80BCA3, #B6D8C0);
+    width: 95%;
 }
